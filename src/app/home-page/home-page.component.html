@@ -1,0 +1,489 @@
+<div class="min-h-screen text-white hero" id="inicio">
+  <nav [ngClass]="{ 'scrolled': isScrolled }"
+    class="fixed top-0 left-0 w-full lg:px-12 px-auto z-50 bg-opacity-50 py-4 transition-colors duration-300">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="/assets/images/logo.svg" alt="Company Logo" class="h-6" />
+      </div>
+
+      <!-- Menú Mobile -->
+      <div class="md:hidden">
+        <button (click)="toggleMobileMenu()" class="text-white focus:outline-none">
+          <svg *ngIf="!isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg *ngIf="isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <!-- Menú Mobile Desplegable -->
+        <div *ngIf="isMobileMenuOpen" class="absolute top-full left-0 w-full bg-[#1b1a35] md:hidden">
+          <div class="flex flex-col px-4 py-4 space-y-2">
+            <a (click)="navigateToSection('inicio')"
+              class="block py-2 hover:bg-blue-900 transition-colors hover:cursor-pointer">INICIO</a>
+            <a (click)="navigateToSection('quienes-somos')"
+              class="block py-2 hover:bg-blue-900 transition-colors hover:cursor-pointer">QUIENES SOMOS</a>
+            <a (click)="navigateToSection('servicios')"
+              class="block py-2 hover:bg-blue-900 transition-colors hover:cursor-pointer">NUESTROS SERVICIOS</a>
+            <a (click)="navigateToSection('contacto')"
+              class="block py-2 hover:bg-blue-900 transition-colors hover:cursor-pointer">CONTACTO</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Menú Desktop (Derecha) -->
+      <div class="hidden md:flex space-x-6">
+        <a (click)="navigateToSection('inicio')"
+          class="hover:text-blue-300 transition-colors hover:cursor-pointer">INICIO</a>
+        <a (click)="navigateToSection('quienes-somos')"
+          class="hover:text-blue-300 transition-colors hover:cursor-pointer">QUIENES SOMOS</a>
+        <a (click)="navigateToSection('servicios')"
+          class="hover:text-blue-300 transition-colors hover:cursor-pointer">NUESTROS SERVICIOS</a>
+        <a (click)="navigateToSection('contacto')"
+          class="hover:text-blue-300 transition-colors hover:cursor-pointer">CONTACTO</a>
+      </div>
+    </div>
+  </nav>
+
+  <div
+    class="container hero_container mx-auto px-4 flex flex-col-reverse md:flex-row items-center min-h-screen pt-16 relative">
+    <div
+      class="w-full px-14 md:w-1/2 space-y-6 z-20 text-center md:text-left absolute md:static inset-x-0 top-1/2 md:top-auto -translate-y-1/2 md:translate-y-0">
+      <h1 class="text-5xl md:text-5xl font-bold leading-tight">
+        Soluciones Tecnológicas
+        <br /><span class="text-[#00c9ff]">y Eléctricas Integrales </span>
+      </h1>
+      <p class="text-base max-w-1xl text-white">
+        Impulsamos el desarrollo tecnológico de hogares, pymes y grandes empresas
+        a través de la automatización, la innovación y la infraestructura de alta calidad.
+      </p>
+      <button (click)="navigateToSection('contacto')" class="border-[#01c4fa] border-2 px-6 md:px-8 py-2 md:py-2 rounded-lg transition-colors">
+        Contáctanos
+      </button>
+    </div>
+
+    <div
+      class="w-full md:w-1/2 mb-8 md:mb-0 md:absolute md:right-0 md:top-1/2 md:transform md:-translate-y-1/2 relative">
+      <div class="relative">
+        <img src="assets/images/world.svg" alt="Planeta tecnológico" class="relative z-10 w-full h-auto" />
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute inset-0 pointer-events-none">
+    <div
+      class="absolute top-0 left-0 w-full h-full opacity-10 bg-[length:50px_50px] bg-[radial-gradient(#002961_1px,transparent_1px)]">
+    </div>
+  </div>
+
+  <section class="services py-16" id="servicios">
+    <div class="container mx-auto px-8 md:px-16 lg:px-24 text-center">
+      <h2 class="text-4xl md:text-4xl font-bold mb-4 text-gray-100">
+        Servicios que <span class="text-[#00c9ff]">Transforman tu Conectividad </span>
+      </h2>
+      <p class="text-lg text-gray-100 mb-12 max-w-6xl mx-auto">
+        Desde cableado estructurado hasta sistemas de seguridad, ofrecemos soluciones a medida para hogares, pymes y
+        grandes empresas.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <div *ngFor="let service of servicesall"
+          class="border-2 border-[#01c4fa] rounded-lg p-6 flex flex-col items-start text-start transition-all duration-300 ease-in-out hover:bg-[#01c4fa] hover:text-white group">
+          <img [src]="service.iconPath" alt="{{ service.title }} icon"
+            class="w-20 h-20 mb-4 filter group-hover:invert group-hover:brightness-0" />
+          <h3 class="text-md font-bold mb-3 group-hover:text-white">
+            {{ service.title }}
+          </h3>
+          <p class="text-gray-100 group-hover:text-white text-md">
+            {{ service.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="detailed-services bg-[#edf4fd] py-16 section" >
+  <div class="container mx-auto px-8 md:px-16 lg:px-24">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl md:text-4xl font-bold mb-4 text-gray-800">
+        Nuestros Servicios, <span class="text-[#00c9ff]">Detalle a Detalle</span>
+      </h2>
+      <p class="text-lg text-black max-w-9xl mx-auto mb-12">
+        En <span class="text-[#000] font-semibold">IP Electrics </span>, ofrecemos una amplia gama de servicios
+        tecnológicos y eléctricos diseñados para mejorar la
+        eficiencia y seguridad de tu empresa, hogar o negocio. Explora cada uno de nuestros servicios en detalle y
+        descubre cómo podemos impulsar tu conectividad, seguridad y presencia digital.
+      </p>
+
+      <div class="flex justify-between items-center space-x-4 mb-12">
+        <button (click)="previousService()"
+          class="hover:bg-[#02c6fd] hover:text-white text-[#133d66] hover:cursor-pointer p-2 rounded-full disabled:opacity-50"
+          [disabled]="currentServiceIndex === 0">
+          ←
+        </button>
+
+        <div class="flex overflow-x-auto space-x-4">
+          <div *ngFor="let service of services" (click)="selectService(service)" class="flex-shrink-0 flex items-center cursor-pointer border-2 border-[#01c4fa] rounded-lg px-6 py-3
+                   transition-all duration-300 ease-in-out
+                   hover:bg-[#02c6fd] hover:text-white
+                   group" [class.bg-[#02c6fd]]="selectedService?.id === service.id"
+            [class.bg-gradient-to-r]="selectedService?.id === service.id"
+            [class.from-[#08bcf4]]="selectedService?.id === service.id"
+            [class.to-[#3481c3]]="selectedService?.id === service.id"
+            [class.text-white]="selectedService?.id === service.id">
+            <img [src]="service.icon" alt="{{ service.name }} icon" class="w-8 h-6 mr-3 filter transition-all duration-300
+              group-hover:invert group-hover:brightness-0"
+              [class.invert]="selectedService?.id === service.id"
+              [class.brightness-0]="selectedService?.id === service.id"
+              [class.contrast-[10]]="selectedService?.id === service.id" />
+            <span>{{ service.name }}</span>
+          </div>
+        </div>
+
+        <button (click)="nextService()"
+          class="hover:bg-[#02c6fd] hover:text-white text-[#133d66] p-2 rounded-full disabled:opacity-50"
+          [disabled]="currentServiceIndex === services.length">
+          →
+        </button>
+      </div>
+
+      <div class="border-t border-[#00c9ff] opacity-30 my-6"></div>
+
+
+      <div *ngIf="selectedService" class="flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2 md:pr-6 text-start">
+          <h3 class="text-5xl font-bold mb-4 text-[#133d66] whitespace-pre-line">
+            {{ selectedService.title }}
+          </h3>
+          <p class="text-black mb-8">
+            {{ selectedService.description }}
+          </p>
+          <div class="grid grid-cols-2 gap-4">
+            <div *ngFor="let card of selectedService.detailCards"
+              class="bg-[#edf0f3] border-2 border-[#fefefe] p-4 rounded-lg flex items-center">
+              <img [src]="card.icon" alt="Detail icon" class="w-10 h-10 mr-4" />
+              <span class="text-sm text-black font-semibold">
+                {{ card.text }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 md:pl-6 hidden md:block">
+          <div class="relative overflow-hidden">
+            <img [src]="selectedService.largeImage" [alt]="selectedService.name + ' illustration'" class="
+                w-full
+                h-auto
+                transform
+                scale-105
+                transition-all
+                duration-300
+                ease-in-out
+                hover:scale-110
+                object-cover
+                rounded-lg
+                shadow-none
+              " />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relative bg-gradient-to-br from-[#191a33] to-[#2c3156] py-16 text-white" id="quienes-somos">
+  <div class="container mx-auto px-8 md:px-16 lg:px-24">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4">
+        Nuestro Enfoque <span class="text-[#00c9ff]">y Experiencia</span>
+      </h2>
+      <p class="text-md max-w-6xl mx-auto mb-8">
+        Más que una empresa de servicios tecnológicos, somos tu aliado estratégico. Conoce más sobre nuestra experiencia
+        y compromiso.
+      </p>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center mb-12">
+      <div class="hidden md:block md:w-1/2 pr-8">
+        <img src="/assets/images/Laptop.svg" alt="Company Logo" class="w-full h-auto" />
+      </div>
+
+      <div class="w-full md:w-1/2 px-4 md:px-0">
+        <div class="w-full max-w-xl mx-auto">
+          <div class="w-64 h-16 rounded-lg flex items-start justify-start mb-4">
+            <img src="/assets/images/logo.svg" alt="Company Logo" class="h-8" />
+          </div>
+
+          <div class="mb-8">
+            <p class="text-md leading-relaxed text-justify">
+              Somos una <span class="text-[#00c9ff]">empresa integradora de servicios tecnológicos y eléctricos,</span>
+              especializada en brindar soluciones de alta calidad para hogares, pymes, y grandes empresas. Nuestra meta
+              es impulsar la cobertura tecnológica con los más altos estándares de calidad y eficiencia.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="relative bg-[#2c3156] rounded-lg overflow-hidden group">
+              <div class="absolute inset-0 opacity-10">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="w-full h-full text-white">
+                  <path fill="currentColor" d="M100 20 L180 100 L100 180 L20 100 Z" />
+                </svg>
+              </div>
+
+              <div class="absolute inset-0 bg-gradient-to-b from-[#0785e7] to-[#045aa3]
+                                opacity-0 group-hover:opacity-100
+                                transition-opacity duration-500 ease-in-out">
+              </div>
+
+              <div class="relative z-10 p-6 flex flex-col h-full">
+                <div class="flex-grow">
+                  <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-white transition-colors duration-500">
+                    Misión</h3>
+                  <p class="text-gray-300 group-hover:text-white transition-colors duration-500">
+                    Nuestra misión es contribuir al desarrollo tecnológico de nuestros clientes a través de soluciones
+                    innovadoras, automatización y normalización de infraestructura tecnológica, asegurando eficiencia y
+                    sostenibilidad en cada proyecto.
+                  </p>
+                </div>
+                <div class="mt-4 self-start">
+                  <img src="/assets/images/mision.svg" alt="Mision" class="h-16">
+                </div>
+              </div>
+            </div>
+
+            <div class="relative bg-[#2c3156] rounded-lg overflow-hidden group">
+              <div class="absolute inset-0 opacity-10">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="w-full h-full text-white">
+                  <circle cx="100" cy="100" r="80" fill="currentColor" />
+                </svg>
+              </div>
+
+              <div class="absolute inset-0 bg-gradient-to-b from-[#0785e7] to-[#045aa3]
+                                opacity-0 group-hover:opacity-100
+                                transition-opacity duration-500 ease-in-out">
+              </div>
+
+              <div class="relative z-10 p-6 flex flex-col h-full">
+                <div class="flex-grow">
+                  <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-white transition-colors duration-500">
+                    Visión</h3>
+                  <p class="text-gray-300 group-hover:text-white transition-colors duration-500">
+                    Aspiramos a ser reconocidos a nivel regional como líderes en la implementación de soluciones
+                    tecnológicas, destacándonos por nuestra innovación, calidad de servicio y compromiso con el progreso
+                    tecnológico de nuestros clientes.
+                  </p>
+                </div>
+                <div class="mt-4 self-start">
+                  <img src="/assets/images/vision.svg" alt="Vision" class="h-16">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="relative bg-white py-16 text-black" id="trabajos-realizados">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[length:50px_50px] bg-[radial-gradient(#002961_1px,transparent_1px)]">
+    </div>
+  </div>
+  <div class="container mx-auto px-8 md:px-16 lg:px-24">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4 text-[#060922]">
+        Trabajos <span class="text-[#00c9ff]">Realizados</span>
+      </h2>
+      <p class="text-md max-w-6xl mx-auto mb-8 text-gray-700">
+        Descubre algunos de nuestros proyectos más destacados que demuestran nuestra experiencia y compromiso con la excelencia.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Proyecto 1 -->
+      <div *ngFor="let post of posts"  class="bg-[#f4f4f4] rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:transform hover:scale-105">
+        <div class="relative h-48 overflow-hidden">
+          <img src="{{post.image}}" alt="{{post.title}}" class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#060922] to-transparent opacity-60"></div>
+          <div class="absolute bottom-0 left-0 p-4">
+            <h3 class="text-white text-lg font-bold">{{post.title}}</h3>
+            <p class="text-gray-200 text-sm">{{post.category}}</p>
+          </div>
+        </div>
+        <div class="p-4">
+          <p class="text-gray-700 text-sm">
+            {{post.content}}
+          </p>
+          <div class="mt-4 flex items-center text-[#0065a1] text-sm font-medium">
+            <span class="mr-1">Cliente:</span>
+            <span>{{post.customer}}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-12 flex justify-center">
+      <button class="border-2 border-[#01c4fa] text-[#060922] px-8 py-3 rounded-lg hover:bg-[#01c4fa] hover:text-white transition-colors duration-300">
+        Ver más proyectos
+      </button>
+    </div>
+  </div>
+</section>
+
+<section class="relative bg-white py-8 sm:py-16 overflow-hidden px-4 sm:px-8 md:px-16" id="contacto">
+  <div class="absolute bottom-0 left-0 right-0 opacity-20">
+    <img src="/assets/images/Intercepcion.svg" alt="" class="w-full" />
+  </div>
+  <div class="container mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
+    <div class="text-center mb-8 sm:mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold text-[#060922]">Estamos Aquí para Ayudarte</h2>
+    </div>
+
+    <div class="container mx-auto px-2 sm:px-4 py-2 sm:py-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div class="bg-gradient-to-br from-[#060922] to-[#0a1540] rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl w-full">
+          <div class="mb-6 sm:mb-8 text-center md:text-left">
+            <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-[#01aee0] mb-2">Contáctanos</h3>
+            <p class="text-white text-2xl sm:text-3xl md:text-4xl font-bold">
+              Tu solución comienza <br> con un mensaje.
+            </p>
+          </div>
+
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-4">
+            <div>
+              <label for="name" class="block text-sm font-medium text-[#027aa4] mb-2">Nombre</label>
+              <input type="text" formControlName="name" class="w-full p-2 sm:p-3 rounded-lg bg-[#b4b5bc] text-white border border-[#027aa4]/50
+                       focus:outline-none focus:ring-2 focus:ring-[#00c9ff] transition duration-300"
+                placeholder="Tu nombre" />
+              <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+                class="text-red-400 text-sm mt-1">
+                Por favor ingresa un nombre válido
+              </div>
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-[#027aa4] mb-2">Correo</label>
+              <input type="email" formControlName="email" class="w-full p-2 sm:p-3 rounded-lg bg-[#b4b5bc] text-white border border-[#027aa4]/50
+                       focus:outline-none focus:ring-2 focus:ring-[#00c9ff] transition duration-300"
+                placeholder="tu@email.com" />
+              <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+                class="text-red-400 text-sm mt-1">
+                Por favor ingresa un correo válido
+              </div>
+            </div>
+
+            <div>
+              <label for="subject" class="block text-sm font-medium text-[#027aa4] mb-2">Asunto</label>
+              <input type="text" formControlName="subject" class="w-full p-2 sm:p-3 rounded-lg bg-[#b4b5bc] text-white border border-[#027aa4]/50
+                       focus:outline-none focus:ring-2 focus:ring-[#00c9ff] transition duration-300"
+                placeholder="Asunto de tu mensaje" />
+              <div *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched"
+                class="text-red-400 text-sm mt-1">
+                Por favor ingresa un asunto
+              </div>
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-[#027aa4] mb-2">Mensaje</label>
+              <textarea formControlName="message" rows="4" class="w-full p-2 sm:p-3 rounded-lg bg-[#b4b5bc] text-white border border-[#027aa4]/50
+                       focus:outline-none focus:ring-2 focus:ring-[#00c9ff] transition duration-300"
+                placeholder="Escribe tu mensaje aquí"></textarea>
+              <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+                class="text-red-400 text-sm mt-1">
+                Por favor escribe un mensaje más detallado
+              </div>
+            </div>
+
+            <div class="flex justify-center">
+              <button type="submit" class="w-full md:w-60 border-2 border-[#00c9ff] text-white py-2 sm:py-3 rounded-lg
+                       hover:bg-[#0785e7] transition-colors duration-300
+                       disabled:opacity-50 disabled:cursor-not-allowed">
+                Enviar
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="space-y-6 sm:space-y-8">
+          <p class="text-sm sm:text-base text-gray-700 text-center md:text-left">
+            Estamos aquí para apoyarte en cada paso hacia la transformación
+            tecnológica de tu negocio. Contáctanos para obtener más información sobre
+            nuestros servicios o para recibir una propuesta adaptada a tus objetivos.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="bg-[#f4f4f4] rounded-lg p-4 sm:p-6 text-center transition-all ease-in-out
+                     hover:bg-gradient-to-b hover:from-[#0785e7] hover:to-[#045aa3]
+                     hover:text-white group duration-500 flex flex-col items-center">
+              <img class="w-10 h-10 sm:w-12 sm:h-12 mb-2 filter group-hover:invert group-hover:brightness-0"
+                src="/assets/images/Celular.svg" alt="Teléfono Icono" />
+              <h4 class="text-[#0065a1] text-lg sm:text-xl font-semibold mb-1 group-hover:text-white">
+                Teléfono
+              </h4>
+              <p class="text-black text-sm sm:text-md font-semibold group-hover:text-white">
+                +57 304 679 6026
+              </p>
+            </div>
+
+            <div class="bg-[#f4f4f4] rounded-lg p-4 sm:p-6 text-center transition-all ease-in-out
+                     hover:bg-gradient-to-b hover:from-[#0785e7] hover:to-[#045aa3]
+                     hover:text-white group duration-500 flex flex-col items-center">
+              <img class="w-10 h-10 sm:w-12 sm:h-12 mb-2 filter group-hover:invert group-hover:brightness-0"
+                src="/assets/images/WhatsApp.svg" alt="WhatsApp Icono" />
+              <h4 class="text-[#0065a1] text-lg sm:text-xl font-semibold mb-1 group-hover:text-white">
+                WhatsApp
+              </h4>
+              <p class="text-black text-sm sm:text-md font-semibold group-hover:text-white">
+                +57 304 679 6026
+              </p>
+            </div>
+
+            <div class="bg-[#f4f4f4] rounded-lg p-4 sm:p-6 text-center transition-all ease-in-out
+                     hover:bg-gradient-to-b hover:from-[#0785e7] hover:to-[#045aa3]
+                     hover:text-white group duration-500 flex flex-col items-center">
+              <img class="w-10 h-10 sm:w-12 sm:h-12 mb-2 filter group-hover:invert group-hover:brightness-0"
+                src="/assets/images/Correo.svg" alt="Correo Icono" />
+              <h4 class="text-[#0065a1] text-lg sm:text-xl font-semibold mb-1 group-hover:text-white">
+                Correo Electrónico
+              </h4>
+              <p class="text-black text-sm sm:text-md font-semibold group-hover:text-white">
+                ipelectricsas&#64;gmail.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-[#161f3d] relative overflow-hidden py-16 px-4">
+  <div class="absolute inset-0 pointer-events-none"
+    style="background-image: radial-gradient(#004da0 1px, transparent 1px); background-size: 20px 20px;"></div>
+  <div class="absolute left-0 top-0 bottom-0 w-full h-auto opacity-30 z-0">
+    <img src="/assets/images/VectorFooter.svg" class="w-full h-auto">
+  </div>
+  <div class="relative z-10 container mx-auto">
+    <div class="flex justify-center mb-8">
+      <img src="/assets/images/logo.svg" alt="Logo de la Empresa" class="h-8 w-auto">
+    </div>
+    <nav class="flex justify-center space-x-8 mb-8">
+      <a (click)="navigateToSection('inicio')" class="text-white hover:text-[#00c9ff] transition-colors cursor-pointer">INICIO</a>
+      <a (click)="navigateToSection('quienes-somos')" class="text-white hover:text-[#00c9ff] transition-colors cursor-pointer">QUIENES SOMOS</a>
+      <a (click)="navigateToSection('servicios')" class="text-white hover:text-[#00c9ff] transition-colors cursor-pointer">SERVICIOS</a>
+      <a (click)="navigateToSection('contacto')" class="text-white hover:text-[#00c9ff] transition-colors cursor-pointer">CONTACTO</a>
+    </nav>
+    <div class="border-t border-[#00c9ff] opacity-30 my-6"></div>
+    <div class="text-center text-white opacity-70 text-sm">
+      © {{currenDate}} IP.ELECTRIK Todos los derechos reservados.
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,37 @@
+.hero{
+  background-image: url('/assets/images/heros.svg');
+  background-size: cover;
+  background-color: #192348;
+}
+
+
+.selected-tab {
+  background: linear-gradient(to right, #08bcf4, #3481c3);
+  color: white;
+}
+
+
+@media (max-width: 767px) {
+  .hero_container {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    min-height: 100vh;
+  }
+}
+
+nav {
+  background-color: transparent;
+
+  &.scrolled {
+    background-color: #133d66;
+  }
+
+  transition: background-color 0.3s ease;
+}
+
+.section {
+  scroll-margin-top: 80px; /* Ajusta según la altura de tu navbar */
+  padding: 20px;
+  min-height: 100vh;
+}
