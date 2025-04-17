@@ -12,6 +12,6 @@ FROM nginx:alpine AS runner
 
 WORKDIR /usr/share/nginx/html
 
-COPY --from=builder /app/dist ./
+COPY --from=builder /app/dist/app-ipelectric/browser ./
 
 EXPOSE 80
